@@ -55,6 +55,7 @@
 		<slf4j.version>1.7.25</slf4j.version>
 		<eclipse.version>2.6.0</eclipse.version>
 		<jaxb-api.version>2.3.1</jaxb-api.version>
+		<lombok.version>1.18.16</lombok.version>
 		
 		<apache-commons.version>3.5</apache-commons.version>
 		<junit.version>4.13.1</junit.version>
@@ -148,6 +149,14 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>${jaxb-api.version}</version>
 		</dependency>
+
+		<!-- POC Java -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -249,7 +258,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<version>3.0.0</version>
 				<executions>
 					<execution>
 						<phase>process-classes</phase>
@@ -263,7 +272,12 @@
 									<key>dest</key>
 									<value>${project.basedir}/src/main/resources</value>
 								</property>
+								<property>
+									<key>log4j.configurationFile</key>
+									<value>${project.basedir}/src/test/resources/log4j2-test.xml</value>
+								</property>
 							</systemProperties>
+							<classpathScope>test</classpathScope>
 						</configuration>
 					</execution>
 				</executions>
